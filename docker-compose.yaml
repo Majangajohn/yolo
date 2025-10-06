@@ -20,6 +20,9 @@ services:
     tty: true
     ports:
       - "3000:3000"
+    environment:
+      - NODE_OPTIONS=--openssl-legacy-provider # enables legacy crypto for webpack)
+      - REACT_APP_API_URL=http://localhost:5000
     depends_on: 
       - nyange-yolo-backend
     networks:
@@ -36,6 +39,8 @@ services:
     restart: always
     ports:
       - "5000:5000"
+    environment:
+      - MONGODB_URI=mongodb://app-ip-mongo:27017/yolomy
     depends_on: 
       - app-ip-mongo
     networks:
