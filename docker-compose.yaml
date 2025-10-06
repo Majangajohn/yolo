@@ -11,24 +11,26 @@ version: "3.8"
 services:
 
   #Builds the frontend Docker image and creates the frontend microservice
-  brian-yolo-client:
-    image: brianbwire/brian-yolo-client:v1.0.0
-    build: ./client
-    container_name: brian-yolo-client
+  nyange-yolo-client:
+    image: majangajohn/nyange-yolo-client:v1.0.0
+    build: 
+      context: ./client
+    container_name: nyange-yolo-client
     stdin_open: true
     tty: true
     ports:
       - "3000:3000"
     depends_on: 
-      - brian-yolo-backend
+      - nyange-yolo-backend
     networks:
-      - app-net
+      - yolo-net
 
   #Builds the backend Docker image and creates the backend microservice
-  brian-yolo-backend:
-    image: brianbwire/brian-yolo-backend:v1.0.0
-    build: ./backend
-    container_name: brian-yolo-backend
+  nyange-yolo-backend:
+    image: majangajohn/nyange-yolo-backend:v1.0.0
+    build: 
+      context: ./backend
+    container_name: nyange-yolo-backend
     stdin_open: true
     tty: true
     restart: always
@@ -37,7 +39,7 @@ services:
     depends_on: 
       - app-ip-mongo
     networks:
-      - app-net
+      - yolo-net
 
   #Creates the database microservice
   app-ip-mongo:
@@ -46,7 +48,7 @@ services:
     ports:
       - "27017:27017"
     networks:
-      - app-net
+      - yolo-net
     volumes:
       - type: volume
         source: app-mongo-data
@@ -55,13 +57,13 @@ services:
 #Creates the network infrastructure necessary for the containers to communicate with each other
 networks:
   app-net:
-    name: app-net
+    name: yolo-net
     driver: bridge
     attachable: true
     ipam:
       config:
         - subnet: 172.20.0.0/16 
-          ip_range: 172.20.0.0/16 
+          ip_range: 172.20.0.0/16 3 # fall back to default if the subnet is taken
 
 #Creates a Docker volume that persists all the data stored in the database
 volumes:
