@@ -17,6 +17,9 @@ RUN npx update-browserslist-db@latest
 # Copy the rest of the application code to the container
 COPY . .
 
+# enable legacy OpenSSL for webpack
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
 # Runs the build script (creates optimized /build folder with static JS/CSS/HTML).
 RUN npm run build
 
@@ -32,9 +35,6 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Documents port (Nginx default is 80, but configured to 3000).
 EXPOSE 3000
-
-# enable legacy OpenSSL for webpack
-ENV NODE_OPTIONS=--openssl-legacy-provider  
 
 # Starts Nginx in foreground.
 CMD ["nginx", "-g", "daemon off;"]
