@@ -1,28 +1,40 @@
+# Build stage - Builds React app
 # Use an official Node runtime as a parent image
-FROM node:14-slim AS build
+FROM node:20-alpine AS builder
 
 # Set the working directory in the container
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Copy the package.json and package-lock.json files to the container
 COPY package*.json ./
 
 # Install application dependencies
-RUN npm install
+RUN npm ci --only=production
+
+#update browserslist db
+RUN npx update-browserslist-db@latest
 
 # Copy the rest of the application code to the container
 COPY . .
 
-FROM alpine:3.16.7
+# Runs the build script (creates optimized /build folder with static JS/CSS/HTML).
+RUN npm run build
 
-WORKDIR /app
+# Runtime stage - Serves static files with Nginx
+# Lightweight web server (~10MB) for static content—no need for Node at runtime.
+FROM nginx:alpine
 
-RUN apk update && apk add npm
+# Copies built assets to Nginx's html dir .
+COPY --from=builder /app/build /usr/share/nginx/html
 
-COPY --from=build /usr/src/app /app
+ # Optional: Custom config for SPA routing (e.g., try_files for React Router).
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose the port the app runs on
+# Documents port (Nginx default is 80, but configured to 3000).
 EXPOSE 3000
 
-# Define the command to run your app
-CMD ["npm", "start"]
+# enable legacy OpenSSL for webpack
+ENV NODE_OPTIONS=--openssl-legacy-provider  
+
+# Starts Nginx in foreground.
+CMD ["nginx", "-g", "daemon off;"]
