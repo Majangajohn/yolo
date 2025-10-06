@@ -21,7 +21,7 @@ class ProductControl extends Component {
         super(props);
         this.state = {
             formVisibleOnPage: false,
-            actualProductList: [],
+            actualProductList: [],  // Already good: Empty array prevents initial map error
             selectedProduct: null,
             editProduct: false,
             uploadPhoto: null
@@ -29,15 +29,26 @@ class ProductControl extends Component {
         };
     }
     
-    componentDidMount(){
-        axios.get(`${process.env.REACT_APP_API_URL}/api/products`)  // CHANGE: Use env var here
-            .then(res =>{
-                console.log(res)
+    // NEW: Separate method to fetch products for reuse (e.g., after add/edit/delete)
+    fetchProducts = () => {
+        axios.get(`${process.env.REACT_APP_API_URL}/api/products`)
+            .then(res => {
+                console.log(res);
+                const products = Array.isArray(res.data) ? res.data : [];
                 this.setState({
-                    actualProductList: res.data
-                })
+                    actualProductList: products
+                });
             })
+            .catch(error => {
+                console.error('Failed to fetch products:', error);
+                this.setState({ actualProductList: [] });
+            });
     }
+
+    componentDidMount(){
+        this.fetchProducts();  // Use the new method
+    }
+    
     handleEditProductClick = () =>{
         console.log('HandleEditClick reached!!')
         console.log(this.state.selectedProduct)
@@ -109,23 +120,34 @@ class ProductControl extends Component {
         //     console.log(pair[0]+ ', ' + pair[1]); 
         // }       
         // console.log(...formData)
-        axios.post(`${process.env.REACT_APP_API_URL}/api/products`, newProduct)  // CHANGE: Use env var here
-            .then(res => console.log(res.data))
-        this.setState({
-            formVisibleOnPage: false
-        })
+        axios.post(`${process.env.REACT_APP_API_URL}/api/products`, newProduct)  
+            .then(res => {
+                console.log(res.data);
+                this.fetchProducts();  // NEW: Re-fetch products after add to update list
+                this.setState({
+                    formVisibleOnPage: false
+                });
+            })
+            .catch(error => {  // NEW: Add error handling for POST
+                console.error('Add product error:', error);
+                alert('Failed to add product: ' + (error.response ? error.response.data.error : 'Network error'));
+            });
     };
     handleDeletingProduct = (id) =>{
-        axios.delete(`${process.env.REACT_APP_API_URL}/api/products/${id}`)  // CHANGE: Use env var here
-            .then(res => console.log(res.data))
-            .catch((error) =>{
-                console.log(error)
+        axios.delete(`${process.env.REACT_APP_API_URL}/api/products/${id}`)  
+            .then(res => {
+                console.log(res.data);
+                this.fetchProducts();  // NEW: Re-fetch after delete to update list
             })
+            .catch((error) =>{
+                console.log(error);
+                alert('Failed to delete product: ' + (error.response ? error.response.data.error : 'Network error'));
+            });
             this.setState({
                 actualProductList: this.state.actualProductList.filter(product => product._id !== id),
                 formVisibleOnPage: false,
                 selectedProduct: null
-            })
+            });
     }
     
     // Method to handle click event on a product
@@ -136,14 +158,20 @@ class ProductControl extends Component {
     }
     handleEditingProduct = (editedProduct) =>{
 
-        axios.put(`${process.env.REACT_APP_API_URL}/api/products/${this.state.selectedProduct._id}`, editedProduct)  // CHANGE: Use env var here
-            .then(res =>console.log(res.data))
-        
-        this.setState({
-            editProduct: false,
-            formVisibleOnPage: false
-        })
-        window.location = '/';
+        axios.put(`${process.env.REACT_APP_API_URL}/api/products/${this.state.selectedProduct._id}`, editedProduct)  
+            .then(res => {
+                console.log(res.data);
+                this.fetchProducts();  // NEW: Re-fetch after edit to update list
+                this.setState({
+                    editProduct: false,
+                    formVisibleOnPage: false
+                });
+                window.location = '/';
+            })
+            .catch(error => {  // NEW: Add error handling for PUT
+                console.error('Edit product error:', error);
+                alert('Failed to edit product: ' + (error.response ? error.response.data.error : 'Network error'));
+            });
     }
 
     render() {

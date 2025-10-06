@@ -20,6 +20,9 @@ COPY . .
 # enable legacy OpenSSL for webpack
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
+# ADD: Embed API URL at build time for React
+ENV REACT_APP_API_URL=http://localhost:5000  
+
 # Runs the build script (creates optimized /build folder with static JS/CSS/HTML).
 RUN npm run build
 
