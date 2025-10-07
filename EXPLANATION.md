@@ -12,12 +12,12 @@ The frontend (in ./client) was bootstrapped with Create React App (CRA), a tool 
 
 Sections like Code Splitting, Bundle Analysis, PWA, Advanced Config, Deployment, and Troubleshooting provide links for deeper learning. We use `npm run build` in Dockerfile for static serving with Nginx.
 
-Screenshot of README content: ![frontend-readme-screenshot.png](frontend-readme-screenshot.png)
+<img src="images/frontend-readme-screenshot.png">
 
 ## 1. Choice of the Base Image on Which to Build Each Container
-For backend: `node:20-alpine` (lightweight, secure, ~150MB). For frontend: `node:20-alpine` build, `nginx:alpine` runtime (~10MB + assets). Mongo: `mongo:5.0`. Total <400MB. 
+For backend: `node:20-alpine` (lightweight, secure, ~150MB). For frontend: `node:20-alpine` build, `nginx:alpine` runtime (~10MB + assets). Mongo: `mongo:5.0`. 
 
-Screenshot: ![base-images-screenshot.png](base-images-screenshot.png)
+<img src="images/docker-images-screenshot.png"> 
 
 ## 2a. Backend Dockerfile (./backend/Dockerfile)
 This uses a multi-stage build to separate dependency installation (build stage) from runtime, reducing size by discarding unnecessary tools.
@@ -160,7 +160,7 @@ Inspect: `docker volume inspect yolo_app-mongo-data` (shows mountpoint on host, 
 - Made 15+ descriptive commits (e.g., "Modified backend Dockerfile", "Fixed DB connection env var"). 
 - Used regular pushes for tracking.
 - created 'containerization-assignment' branch
-- Merged to master at end. Screenshot of git log: F
+- Merged to master at end. 
 
 Screenshot of git log: ![git-log-screenshot.png](git-log-screenshot.png)
 
