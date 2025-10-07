@@ -1,0 +1,125 @@
+commit 6fcbda14485101cda0ab42ce57f4c347be212c6f
+Author: @iam_Nyange <jnmajanga@gmail.com>
+Date:   Tue Oct 7 22:49:23 2025 +0300
+
+    updated README.md file and EXPLANATION.md file to add descriptive screenshots
+
+commit 61554362007836655e5302418b9354db9ba6474d
+Author: @iam_Nyange <jnmajanga@gmail.com>
+Date:   Tue Oct 7 19:38:02 2025 +0300
+
+    Modified Readme file to d the project documentation
+
+commit 894194befb138e89fb4ba341c8653dd8e23c01ec
+Author: @iam_Nyange <jnmajanga@gmail.com>
+Date:   Mon Oct 6 23:27:24 2025 +0300
+
+    Added explanation.md file with explation on docker-compose.yaml and Dockerfiles used to create images for noth backend and client
+
+commit 44aabbbf6c926ad02977760ad8151464e74f2f48
+Author: @iam_Nyange <jnmajanga@gmail.com>
+Date:   Mon Oct 6 22:42:14 2025 +0300
+
+    Added fetchProducts method and error handling to refresh list after CRUD
+
+commit 83f199e57faf671c6e80a0a96ec54cfe59095dde
+Author: @iam_Nyange <jnmajanga@gmail.com>
+Date:   Mon Oct 6 21:54:55 2025 +0300
+
+    updated docker-compose.yaml file to remove the error on subnet range
+
+commit 18bfebf52c6aa720f5e4b8934ced4bf2ae91e3e0
+Author: @iam_Nyange <jnmajanga@gmail.com>
+Date:   Mon Oct 6 21:44:48 2025 +0300
+
+    Added NODE_OPTIONS to frontend Dockerfile build stage to fix OpenSSL error
+
+commit b29d5db6a6826b4e9defd36104d83e41a196d928
+Author: @iam_Nyange <jnmajanga@gmail.com>
+Date:   Mon Oct 6 21:37:36 2025 +0300
+
+    Added nginx.conf for SPA routing in frontend
+
+commit c972c2212b0409c26e9cb9ff06f2714b42a581e9
+Author: @iam_Nyange <jnmajanga@gmail.com>
+Date:   Mon Oct 6 21:10:19 2025 +0300
+
+    modified client Dockerfile with rules to create front end image including static web files to be served by nginx
+
+commit 91a3bb570fb8bed8bcf9eb89886f59a630a41437
+Author: @iam_Nyange <jnmajanga@gmail.com>
+Date:   Mon Oct 6 20:46:01 2025 +0300
+
+    Modified front end (client) Dockerfile to define rules to create front end image and to ge served statically with nginx
+
+commit ed8f6398ce47c394849013138e1dfd6e98be6460
+Author: @iam_Nyange <jnmajanga@gmail.com>
+Date:   Mon Oct 6 20:29:49 2025 +0300
+
+    Modified backend Dockerfile which is used to create image for backend by defining alpine to reduce image size and also the directory in the container
+
+commit e050943dc4c0a0705df038fa5715bfc0987da553
+Author: @iam_Nyange <jnmajanga@gmail.com>
+Date:   Mon Oct 6 20:15:26 2025 +0300
+
+    Modified docker-compose.yaml file to add environment feature and also to enable legacy crypto for webpack
+
+commit 336300bdd11e169ff99e6674ded5dddbcc5ccb14
+Author: @iam_Nyange <jnmajanga@gmail.com>
+Date:   Mon Oct 6 20:04:00 2025 +0300
+
+    modified docker-compose.yaml to have custom naming for my containers services, images, containers and networks
+
+commit e21a9af788023ff745c24b08450f559f0713c99c
+Author: Victor <vinge1718@gmail.com>
+Date:   Tue Dec 17 14:01:21 2024 +0300
+
+    Reverted to previous state and restored specific files
+
+commit 2fce89b63ee606d4caec526108b9708397c0abe0
+Author: vinge1718 <vinge1718@gmail.com>
+Date:   Sun Aug 30 11:58:29 2020 +0300
+
+    made some instructional changes
+
+commit 9e6eaeac653c849094ec129bb425c0a54c968a5b
+Author: vinge1718 <vinge1718@gmail.com>
+Date:   Tue Aug 25 06:22:52 2020 +0300
+
+    added the instructions to run the app for DevOps IP
+
+commit 969e52604e581b0aeaf84df359ab02e92daf4a4e
+Author: john mutavi <jonnygovish@gmail.com>
+Date:   Mon Aug 24 14:09:34 2020 +0300
+
+    folder structure change
+
+commit 6499b80a503c1578dbe68f6cf66409399d6ba372
+Author: john mutavi <jonnygovish@gmail.com>
+Date:   Mon Jul 13 13:53:14 2020 +0300
+
+    Minor change
+
+commit 0e667dbe40ced47a02036cc168128ef74fd8e8dc
+Author: john mutavi <jonnygovish@gmail.com>
+Date:   Mon Jul 13 13:51:21 2020 +0300
+
+    configuration for deployment
+
+commit 2fbaef7f6b505fbecb26c5708a52f73d233c34aa
+Author: john mutavi <jonnygovish@gmail.com>
+Date:   Mon Jul 13 13:29:34 2020 +0300
+
+    Add  components
+
+commit dc0b1c0f4fba263413d800733963d4358702a262
+Author: john mutavi <jonnygovish@gmail.com>
+Date:   Mon Jul 13 13:28:37 2020 +0300
+
+    Initial commit
+
+commit 809ba30d8752534276d370ac6ff0abdd28e486aa
+Author: john mutavi <jonnygovish@gmail.com>
+Date:   Fri Jul 3 16:19:46 2020 +0300
+
+    Initialize project using Create React App

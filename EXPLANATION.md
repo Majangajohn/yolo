@@ -160,9 +160,7 @@ Inspect: `docker volume inspect yolo_app-mongo-data` (shows mountpoint on host, 
 - Made 15+ descriptive commits (e.g., "Modified backend Dockerfile", "Fixed DB connection env var"). 
 - Used regular pushes for tracking.
 - created 'containerization-assignment' branch
-- Merged to master at end. 
-
-Screenshot of git log: ![git-log-screenshot.png](git-log-screenshot.png)
+- Merged to master at end.
 
 
 
