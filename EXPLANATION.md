@@ -15,7 +15,9 @@ Sections like Code Splitting, Bundle Analysis, PWA, Advanced Config, Deployment,
 Screenshot of README content: ![frontend-readme-screenshot.png](frontend-readme-screenshot.png)
 
 ## 1. Choice of the Base Image on Which to Build Each Container
-For backend: `node:20-alpine` (lightweight, secure, ~150MB). For frontend: `node:20-alpine` build, `nginx:alpine` runtime (~10MB + assets). Mongo: `mongo:5.0`. Total <400MB. Screenshot: ![base-images-screenshot.png](base-images-screenshot.png)
+For backend: `node:20-alpine` (lightweight, secure, ~150MB). For frontend: `node:20-alpine` build, `nginx:alpine` runtime (~10MB + assets). Mongo: `mongo:5.0`. Total <400MB. 
+
+Screenshot: ![base-images-screenshot.png](base-images-screenshot.png)
 
 ## 2a. Backend Dockerfile (./backend/Dockerfile)
 This uses a multi-stage build to separate dependency installation (build stage) from runtime, reducing size by discarding unnecessary tools.
@@ -135,7 +137,7 @@ Inspect: `docker network inspect yolo-net` (shows connected containers/IPs).
 
 <img src="images/network.png" alt="network-screenshot">
 
-[network-inspect-screenshot]<img src="images/network-inspect-screenshot.png" alt="network-inspect-screenshot>
+[network-inspect-screenshot]<img src="images/network-inspect-screenshot.png" alt="network-inspect-screenshot">
 
 ## 4. Docker-compose Volume Definition and Usage (where necessary).
 Volumes persist data beyond container lifecycles. 
@@ -150,7 +152,7 @@ Inspect: `docker volume inspect yolo_app-mongo-data` (shows mountpoint on host, 
 
 <img src="images/volume.png" alt="volume-screenshot">
 
-[volume-inspect-screenshot]<img src="images/volume-inspect-screenshot.png" alt="volume-inspect-screenshot>
+[volume-inspect-screenshot]<img src="images/volume-inspect-screenshot.png" alt="volume-inspect-screenshot">
 
 ## 5. Git Workflow Used to Achieve the Task
 - Forked https://github.com/Vinge1718/yolo, 
